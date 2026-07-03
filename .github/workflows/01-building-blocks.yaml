@@ -10,9 +10,9 @@ jobs:
   echo-goodbye:
     runs-on: ubuntu-latest
     steps:
-      - name: Intentional Failure
+      - name: Success Step
         run: |
-            echo "This step is designed to fail."
-            exit 1
+            echo "This step is designed to Succeed."
+            exit 0
       - name: Say Goodbye
         run: echo "Goodbye, World!"
