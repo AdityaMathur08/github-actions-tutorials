@@ -1,6 +1,11 @@
 name: 02 - workflow-events
 
-on: push
+on:
+    schedule:
+      - cron: '0 0 * * *' # Runs every day at midnight UTC
+    push:
+    workflow_dispatch:
+
 
 jobs:
     echo:
