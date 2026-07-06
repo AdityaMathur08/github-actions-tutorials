@@ -1,7 +1,6 @@
 name: 03 - Workdlow Runners
 
 on:
-    push:
     workflow_dispatch:
 
 jobs:
@@ -19,6 +18,14 @@ jobs:
               shell: bash
               run: |
                   echo "This job is running on a Windows runner."      
+                  echo "Runner OS: $RUNNER_OS"
+    macos-echo:
+        runs-on: macos-latest
+        steps:
+            - name: Show the runner operating system
+              shell: bash
+              run: |
+                  echo "This job is running on a macOS runner."
                   echo "Runner OS: $RUNNER_OS"
         
 
