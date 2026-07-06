@@ -1,0 +1,15 @@
+name: 03 - Workdlow Runners
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+    ubuntu-runner:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Show the runner operating system
+              run: |
+                echo "This job is running on an Ubuntu runner."
+                echo "Runner OS: $RUNNER_OS"
+
