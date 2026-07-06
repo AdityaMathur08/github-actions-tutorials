@@ -1,4 +1,4 @@
-name: Building Blocks Workflow
+name: 01 - Building Blocks Workflow
 on: push
 
 jobs:
