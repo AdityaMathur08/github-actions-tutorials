@@ -1,0 +1,14 @@
+name: Grace's Conditional execution
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: conditional execution
+              if: ${{ github.ref == 'refs/heads/main' }}
+              run: |
+                    echo "This workflow was triggered by a push event on main branch."
