@@ -23,6 +23,12 @@ jobs:
               run: |
                 echo "Building..."
                 echo "build-status=${{ github.event.inputs.build-status }}" >> $GITHUB_OUTPUT
+            - name: Additional Step
+              run: |
+                echo "$GITHUB_OUTPUT"
+                echo "Each step has its own GITHUB_OUTPUT file, so that it doesn't get overwritten by other steps. Use the step id to reference the output in the next job."
+
+
     
     deploy:
         runs-on: ubuntu-latest

@@ -1,0 +1,34 @@
+name: Jamie's Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        type: boolean
+        description: Skip the deployment and only print build outputs
+        default: false
+      target-environment:
+        type: environment
+        required: true
+        description: Which environment the workflow will target.
+        
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Build
+          if: ${{ !inputs.dry-run }}
+          run: echo "Building for environment ${{ inputs.target-environment }}"
+        - name: Dry Run Build
+          if: ${{ inputs.dry-run }}
+          run: echo "Skipping build (dry-run mode)"
+    deploy:
+        runs-on: ubuntu-latest
+        if: ${{ !inputs.dry-run }}
+        needs: build
+        environment: ${{ inputs.target-environment }}
+        steps:
+        - name: Deploy
+          run: echo "Deploying to environment ${{ inputs.target-environment }}"
