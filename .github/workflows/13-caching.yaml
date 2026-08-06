@@ -1,0 +1,28 @@
+name: 13-Using Caching
+
+on:
+    workflow_dispatch:
+        inputs:
+            use-cache:
+                type: boolean
+                description: Use caching for dependencies
+                default: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout the code
+              uses: actions/checkout@v3
+            - name: setup python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: '3.11'
+            - name: install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install uv
+                  uv sync
+            - name: Running Tests
+              run: |
+                uv test
